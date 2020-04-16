@@ -1,4 +1,5 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Tailwind configuration is done based on: https://www.smashingmagazine.com/2020/02/tailwindcss-react-project/
 
 ## Available Scripts
 
