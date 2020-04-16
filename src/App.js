@@ -1,5 +1,6 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import axios from 'axios';
+import logo from './assets/drug.png';
 
 function App() {
   const [drugs, setDrugs] = useState([]);  
@@ -20,14 +21,14 @@ function App() {
     <Fragment>
       <div className="flex items-center flex-wrap bg-teal-500 p-3">
           <div className="flex items-center text-white">
-              <img class="p-3 h-24 w-24 flex-none bg-cover" src="/src/assets/drug.png" alt="Drug Information"/>
+              <img className="p-3 h-24 w-24 flex-none bg-cover" src={logo} alt="Drug Information"/>
               <span className="p-3 font-semibold text-3xl tracking-tight">Search Marketed Drugs by Brand Name</span>
           </div>
           <div className="pt-3 lg:pt-0 w-full block flex-grow lg:flex lg:items-center lg:w-auto">
               <div className="mr-3 flex-grow">
                   <div className="relative">
                       <input type="text" className="rounded-lg w-full pl-12 py-2 px-3 text-2xl text-gray-800 " id="text"
-                          name="text" placeholder="cold or fever" value={query} onChange={ event => {setQuery(event.target.value)}}/>
+                          name="text" placeholder="cold or fever" value={query} onChange={ event => {setQuery(event.target.value)}} onKeyUp={event => { if(event.key === 'Enter') setUrl(`http://192.168.206.130:8080/api/drugs/brand_name/${query}`)}}/>
                       <div className="pointer-events-none absolute inset-y-0 left-0 pl-4 flex items-center">
                           <svg className="fill-current pointer-events-none text-gray-600 w-6 h-6"
                               xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -37,12 +38,6 @@ function App() {
                       </div>
                   </div>
               </div>
-              <div class="pt-3 lg:pt-0">
-                <button onClick={() => setUrl(`http://192.168.206.130:8080/api/drugs/brand_name/${query}`)} type="button"
-                    class="text-2xl bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-8 rounded">
-                    Go
-                </button>
-            </div>
           </div>
       </div>
 
@@ -60,7 +55,7 @@ function App() {
             drugs.map(drug => {         
               return (
                 <tr key={drug.din}>
-                    <td className="border px-4 py-2 text-blue-500 font-bold"><a href="#">{drug.din}</a></td>
+                    <td className="border px-4 py-2 text-blue-500 font-bold"><a href="#{drug.din}">{drug.din}</a></td>
                     <td className="border px-4 py-2" >{drug.brandName}</td>
                     <td className="border px-4 py-2">{drug.manufacturer.companyName}</td>
                 </tr> 
