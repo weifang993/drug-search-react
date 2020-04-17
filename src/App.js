@@ -2,15 +2,11 @@ import React, { useState, useEffect, Fragment } from 'react';
 import axios from 'axios';
 import logo from './assets/drug.png';
 import DrugList from './DrugList';
-import DrugDetails from './DrugDetails';
 
 function App() {
   const [drugs, setDrugs] = useState([]);
   const [query, setQuery] = useState('');
   const [url, setUrl] = useState(null);
-  const [selectedDrug, setSelectedDrug] = useState({});
-  const [detailVisibility, setDetailVisibility] = useState('invisible');
-
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,16 +26,6 @@ function App() {
 
   const handleQueryChange = (e) => {
     setQuery(e.target.value);
-  }
-
-  const hideDrugDetais = (e) => {
-    console.log('hide drug details');
-    setDetailVisibility('invisible');
-  }
-
-  const showDrugDetais = (drug) => {
-    setSelectedDrug(drug);
-    setDetailVisibility('visible');
   }
 
   return (
@@ -66,22 +52,8 @@ function App() {
         </div>
       </div>
 
-      <DrugList drugs={drugs} selectDrug={showDrugDetais}></DrugList>
-
-      <div className={detailVisibility}>
-        <div className="fixed custom-transparent inset-0 z-50 overflow-auto bg-gray-100 flex">
-          <div className="relative bg-gray-100 w-full max-w-md lg:max-w-3xl m-auto flex-col flex">
-            <span className="absolute top-0 right-0 pr-3 pt-3" onClick={hideDrugDetais}>
-              <svg className="h-12 w-12 fill-current text-grey hover:text-grey-darkest" role="button"
-                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                <title>Close</title>
-                <path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" />
-              </svg>
-            </span>
-            <DrugDetails drug={selectedDrug}></DrugDetails>
-          </div>
-        </div>
-      </div>
+      <DrugList drugs={drugs}></DrugList>
+      
     </Fragment>
   );
 }
