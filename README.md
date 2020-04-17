@@ -1,6 +1,8 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 Tailwind configuration is done based on: https://www.smashingmagazine.com/2020/02/tailwindcss-react-project/
 
+This project needs to dpd-server for drug data. The quickest way to get the data tier going is to run licence-app-demo, which provisions mongo db adn dpd-server. Make sure to load drug data first by following the demo article: https://medium.com/@wfang.ca/full-stack-cloud-application-demo-with-docker-compose-23a86f8abbf1
+
 ## Available Scripts
 
 In the project directory, you can run:
