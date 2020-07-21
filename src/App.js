@@ -20,7 +20,9 @@ function App() {
 
   const search = (e) => {
     if (e.key === 'Enter') {
-      setUrl(`http://192.168.206.130:8080/api/drugs/brand_name/${query}`)
+      // for tekton-openshift pipeline 
+      setUrl(`http://DPD_SERVER_ROUTE_NAME/api/drugs/brand_name/${query}`)
+      // setUrl(`http://192.168.206.130:8080/api/drugs/brand_name/${query}`)
     }
   }
 
